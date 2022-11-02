@@ -1,0 +1,482 @@
+ASSIGHNMENT QUESTION
+
+1. Write a program that reads 5 Random 3 Digit values and then outputs the minimum
+and the maximum value.
+
+================================================================
+#!/bin/bash +x
+a=$(( ( RANDOM%899)+ 100 ))
+c=$(( ( RANDOM%899)+ 100 ))
+d=$(( ( RANDOM%899)+ 100 ))
+e=$(( ( RANDOM%899)+ 100 ))
+b=$(( ( RANDOM%899)+ 100 ))
+
+
+if (( $a >= $b &&  $a >= $e &&  $a >= $c &&  $a >= $d  ))
+then
+        echo MAXIMUM NUMBER $a
+elif (( $b >= $a &&  $b >= $e &&  $b >= $c &&  $b >= $d  ))
+then
+        echo MAXIMUM NUMBER $b
+elif (( $c >= $b &&  $c >= $e &&  $c >= $a &&  $c >= $d  ))
+then
+        echo MAXIMUM NUMBER $c
+elif (( $d >= $b &&  $d >= $e &&  $d >= $c &&  $d >= $a  ))
+then
+        echo MAXIMUM NUMBER $d
+else
+        echo MAXIMUM NUMBER $e
+
+fi
+
+
+if (( $a <= $b &&  $a <= $e &&  $a <= $c &&  $a <= $d  ))
+then
+        echo MINIMUM NUMBER $a
+elif (( $b <= $a &&  $b <= $e &&  $b <= $c &&  $b <= $d  ))
+then
+        echo MINIMUM NUMBER $b
+elif (( $c <= $b &&  $c <= $e &&  $c <= $a &&  $c <= $d  ))
+then
+        echo MINIMUM NUMBER $c
+elif (( $d <= $b &&  $d <= $e &&  $d <= $c &&  $d <= $a  ))
+then
+        echo MINIMUM NUMBER $d
+else
+        echo MINIMUM NUMBER $e
+
+fi
+
+
+*****************************outout*****************************
+$ ./3_max_min.sh
+MAXIMUM NUMBER 910
+MINIMUM NUMBER 189
+
+
+=====================================================================================
+2. Write a program that takes day and month from the command line and prints true if
+day of month is between March 20 and June 20, false otherwise.
+
+==============================================================================
+#!/bin/bash -x
+#!/bin/bash +x
+
+echo "ENTER DATE :"
+read date
+echo "ENTER MONTH IN NUMBER :"
+read month
+
+if (( $month == 3 && $date <= 20 ))
+then
+        echo "ENTERED MONTH AND DATE IS" $month $date
+        echo "TRUE,it comes in between the March 20 and June 20"
+
+elif (( $month == 6 && $date <= 20 ))
+then
+        echo "ENTERED MONTH AND DATE IS" $month $date
+        echo "TRUE,it comes in between the March 20 and June 20"
+
+elif (( $month >= 4 && $month <= 5 && $date <= 31 && $date >= 1 ))
+then
+        echo "ENTERED MONTH AND DATE IS" $month $date
+        echo "TRUE,it comes in between the March 20 and June 20"
+else
+        echo "NOT IN BETWEEN MARCH 20 AND JUNE 20"
+fi
+
+
+***************************output********************************
+$ ./inbetween.sh
+ENTER DATE :
+25
+ENTER MONTH IN NUMBER :
+5
+ENTERED MONTH AND DATE IS 5 25
+TRUE,it comes in between the March 20 and June 20
+
+or
+
+$ ./inbetween.sh
+ENTER DATE :
+31
+ENTER MONTH IN NUMBER :
+6
+NOT IN BETWEEN MARCH 20 AND JUNE 20
+
+
+
+
+========================================================================================
+3. Write a program that takes a year as input and outputs the Year is a Leap Year or not
+a Leap Year. A Leap Year checks for 4 Digit Number, Divisible by 4 and not 100 unless
+divisible by 400.
+===================================================================================
+
+#!/bin/bash +x
+read -p "ENTER YEAR FOR CHECKING : " year
+
+if (( $year > 999 && $year < 10000 ))
+then
+        if (( $year % 4 == 0 && $year % 100 != 0 || $year % 400 == 0 ))
+        then
+                echo $year is LEAP YEAR
+        else
+                echo $year is not LEAP YEAR
+        fi
+else
+        echo please write 4 digit year
+fi
+
+******************************output******************************************
+$ ./leap.sh
+ENTER YEAR FOR CHECKING : 2025
+2025 is not LEAP YEAR
+
+or
+
+$ ./leap.sh
+ENTER YEAR FOR CHECKING : 2016
+2016 is LEAP YEAR
+
+
+====================================================================================
+4. Write a program to simulate a coin flip and print out "Heads" or "Tails" accordingly.
+==========================================================================================
+#!/bin/bash -x
+
+x=$(( RANDOM%2 ))
+if (( $x == 0 ))
+then
+        echo "head"
+else
+        echo "tail"
+fi
+
+
+
+*******************output*********************************************
+$ ./flipcoin.sh
++ x=1
++ ((  1 == 0  ))
++ echo tail
+tail
+
+or
+
+$ ./flipcoin.sh
++ x=0
++ ((  0 == 0  ))
++ echo head
+head
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Selection Practice Problems with if, elif and else
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+=======================================================================
+1. Read a single digit number and write the number in word
+=====================================================================
+#!/bin/bash +x
+
+a=one
+b=two
+c=three
+d=four
+e=five
+f=six
+g=seven
+h=eight
+i=nine
+z=zero
+
+read -p "ENTER SINGLE DIGIT NUMBER : " num
+if (( $num == 1 ))
+then
+        echo $a
+elif (( $num == 2 ))
+then
+        echo $b
+elif (( $num == 3 ))
+then
+        echo $c
+
+elif (( $num == 4 ))
+then
+        echo $d
+
+elif (( $num == 5 ))
+then
+        echo $e
+
+elif (( $num == 6 ))
+then
+        echo $f
+
+elif (( $num == 7 ))
+then
+        echo $g
+
+elif (( $num == 8 ))
+then
+        echo $h
+
+elif (( $num == 9 ))
+then
+        echo $i
+
+elif (( $num == 0 ))
+then
+        echo $z
+else
+        echo "its not in range of (0-9)"
+fi
+*******************************output*************************************
+$ ./single_digit_in_word.sh
+ENTER SINGLE DIGIT NUMBER : 5
+five
+======================================================================
+2. Read a Number and Display the week day (Sunday, Monday,...)
+=======================================================================
+#!/bin/bash -x
+
+a=monday
+b=tuesday
+c=wednesday
+d=thrusday
+e=friday
+f=saturday
+g=sunday
+
+read -p "ENTER NO OF WEEK : " week
+
+if (( $week == 1 ))
+then
+        echo $a
+elif (( $week == 2 ))
+then
+        echo $b
+
+elif (( $week == 3 ))
+then
+        echo $c
+
+elif (( $week == 4 ))
+then
+        echo $d
+
+elif (( $week == 5 ))
+then
+        echo $e
+
+elif (( $week == 6 ))
+then
+        echo $f
+
+elif (( $week == 7 ))
+then
+        echo $g
+else
+        echo $week is not days of week
+fi
+
+
+****************************output*************************************
+$ ./week.sh
++ a=monday
++ b=tuesday
++ c=wednesday
++ d=thrusday
++ e=friday
++ f=saturday
++ g=sunday
++ read -p 'ENTER NO OF WEEK : ' week
+ENTER NO OF WEEK : 5
++ ((  5 == 1  ))
++ ((  5 == 2  ))
++ ((  5 == 3  ))
++ ((  5 == 4  ))
++ ((  5 == 5  ))
++ echo friday
+friday
+
+=======================================================================
+3. Read a Number 1, 10, 100, 1000, etc and display unit, ten, hundred,...
+===========================================================================
+#!/bin/bash -x
+a=1
+b=10
+c=100
+d=1000
+
+read -p "ENTER UNITS OF NO IN DIGITS : " unit
+if (( $unit == $a ))
+then
+        echo UNIT VALUE
+
+elif (( $unit == $b ))
+then
+        echo TENS VALUE
+
+elif (( $unit == $c ))
+then
+        echo HUNDRED VALUE
+
+elif (( $unit == $d ))
+then
+        echo THOUSAND VALUE
+else
+        echo OUT OF RANGE
+fi
+
+
+*****************************output***************************************
+$ ./place.sh
++ a=1
++ b=10
++ c=100
++ d=1000
++ read -p 'ENTER UNITS OF NO IN DIGITS : ' unit
+ENTER UNITS OF NO IN DIGITS : 10
++ ((  10 == 1  ))
++ ((  10 == 10  ))
++ echo TENS VALUE
+TENS VALUE
+
+=========================================================================
+4. Enter 3 Numbers do following arithmetic operation and find the one that is maximum and minimum
+1. a + b * c
+3. c + a / b
+2. a % b + c 
+4. a * b + c
+===================================================================================================
+#!/bin/bash -x
+read -p "ENTER VARIABLE a :" a
+read -p "ENTER VARIABLE b :" b
+read -p "ENTER VARIABLE c :" c
+echo " a + (b * c)"
+z=$(( a + (b * c) ))
+echo $z
+echo "c + ( a / b )"
+z=$(( c + ( a / b) ))
+echo $z
+echo "(a % b) + c"
+z=$(( (a % b) + c ))
+echo $z
+echo "(a * b) + c"
+z=$(( (a * b) + c ))
+echo $z
+
+****************************output************************************************
+$ ./arithmatic.sh
++ read -p 'ENTER VARIABLE a :' a
+ENTER VARIABLE a :4
++ read -p 'ENTER VARIABLE b :' b
+ENTER VARIABLE b :6
++ read -p 'ENTER VARIABLE c :' c
+ENTER VARIABLE c :8
++ echo ' a + (b * c)'
+ a + (b * c)
++ z=52
++ echo 52
+52
++ echo 'c + ( a / b )'
+c + ( a / b )
++ z=8
++ echo 8
+8
++ echo '(a % b) + c'
+(a % b) + c
++ z=12
++ echo 12
+12
++ echo '(a * b) + c'
+(a * b) + c
++ z=32
++ echo 32
+32
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Selection Practice Problems with case statement
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+=================================================================================
+1. Read a single digit number and write the number in word using Case
+========================================================================
+#!/bin/bash +x
+read -p "ENTER SINGLE DIGIT NUMBER : " num
+case $num in
+        "1") echo one
+        ;;
+        "2") echo two
+        ;;
+        "3") echo three
+        ;;
+        "4") echo four
+        ;;
+        "5") echo five
+        ;;
+        "6") echo six
+        ;;
+        "7") echo seven
+        ;;
+        "8") echo eight
+        ;;
+        "9") echo nine
+        ;;
+        "10") echo ten
+        ;;
+esac
+****************************output**************************************
+$ ./while_single_word.sh
+ENTER SINGLE DIGIT NUMBER : 9
+nine
+
+=====================================================================
+2. Read a Number and Display the week day (Sunday, Monday,...)
+====================================================================
+#!/bin/bash +x
+read -p "ENTER NO OF WEEK : " week
+case $week in
+        "1") echo MONDAY
+        ;;
+        "2") echo TUESDAY
+        ;;
+        "3") echo WEDNESDAY
+        ;;
+        "4") echo THRUSDAY
+        ;;
+        "5") echo FRIDAY
+        ;;
+        "6") echo SATURDAY
+        ;;
+        "7") echo SUNDAY
+        ;;
+esac
+****************************OUTPUT******************************
+$ ./while_week.sh
+ENTER NO OF WEEK : 5
+FRIDAY
+========================================================================
+3. Read a Number 1, 10, 100, 1000, etc and display unit, ten, hundred,...
+=========================================================================
+#!/bin/bash +x
+read -p "ENTER UNITS OF NO IN DIGITS : " unit
+case $unit in
+        "1") echo ONES OR UNIT VALUE
+        ;;
+        "10") echo TENS VALUE
+        ;;
+        "100") echo HUNDRED VALUE
+        ;;
+        "1000") echo THOUSAND VALUE
+        ;;
+esac
+***************************OUTPUT***********************************
+$ ./while_place.sh
+ENTER UNITS OF NO IN DIGITS : 10
+TENS VALUE
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+ASSIGNMENT COMPLETED

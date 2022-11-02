@@ -1,0 +1,274 @@
+ASSIGNMENT QUESTION
+================================================================================================================================
+1. Write a program that takes a command-line argument 
+n and prints a table of the powers of 2 that are less 
+than or equal to 2^n.
+=================================================================================================================================
+#!/bin/bash +x
+read -p "enter number : " n
+for (( i = 1 ;i <= $n ;i++ ))
+do
+         z=$(( 2 * i ))
+        echo "2 * $i =" $z
+done
+
+
+
+***********************************output************************************
+$ ./table.sh
+enter number : 10
+2 * 1 = 2
+2 * 2 = 4
+2 * 3 = 6
+2 * 4 = 8
+2 * 5 = 10
+2 * 6 = 12
+2 * 7 = 14
+2 * 8 = 16
+2 * 9 = 18
+2 * 10 = 20
+
+
+===========================================================================================================================
+2. Write a program that takes a command-line 
+argument n and prints the nth harmonic number.
+ Harmonic Number is of the form
+==========================================================================================================================
+#!/bin/bash +x
+
+echo hormonic series like 1/1+1/2+1/3+1/4+....1/n
+read -p "enter number : " n
+for (( i = 1 ;i <= n ;i++ ))
+do
+        if ((i == 1))
+        then
+                h=1/$i
+        else
+                for (( j = 2; j <= n; j++ ))
+                do
+                        if ((i == j))
+                        then
+                                h="+1"/$i
+
+                        fi
+                done
+        fi
+        echo $h
+done
+
+**********************output*****************************************************************
+
+$ ./harmonic.sh
+hormonic series like 1/1+1/2+1/3+1/4+....1/n
+enter number : 9
+1/1
++1/2
++1/3
++1/4
++1/5
++1/6
++1/7
++1/8
++1/9
+
+==========================================================================================
+3. Write a program that takes a input and determines 
+if the number is a prime.
+=====================================================================================================
+#!/bin/bash -x
+
+read -p "enter number: " n
+
+for((i=2;i<=$n/2; i++))
+do
+        res=$(( n%i ))
+        if [ $res -eq 0 ]
+        then
+                echo "$n is not a prime number."
+                exit 0
+        fi
+done
+echo "$n is prime number."
+
+
+
+
+*******************************output*******************************************
+$ ./prime.sh
++ read -p 'enter number: ' n
+enter number: 5
++ (( i=2 ))
++ (( i<=5/2 ))
++ res=1
++ '[' 1 -eq 0 ']'
++ (( i++ ))
++ (( i<=5/2 ))
++ echo '5 is prime number.'
+5 is prime number.
+
+
+
+or
+
+
+$ ./prime.sh
++ read -p 'enter number: ' n
+enter number: 10
++ (( i=2 ))
++ (( i<=10/2 ))
++ res=0
++ '[' 0 -eq 0 ']'
++ echo '10 is not a prime number.'
+10 is not a prime number.
++ exit 0
+
+
+
+====================================================================================================
+4. Extend the program to take a range of number as 
+input and output the Prime Numbers in that range.
+====================================================================================================
+
+
+******************************************output*************************************************
+
+
+==============================================================================================
+5. Write a program that computes a factorial of a number taken as input.
+                   5 Factorial – 5! = 1 * 2 * 3 * 4 * 5
+==============================================================================================
+
+#!/bin/bash +x
+echo "EXAMPLE Factorial – 5! = 1 * 2 * 3 * 4 * 5"
+
+read -p "enter no for factorial : " n
+f=1
+function fact()
+{
+        if (( n==1 ||n==0 ))
+        then
+                echo 1
+        else
+                for (( i=2;i<=n;i++))
+                {
+                        f=$((f * i))
+                }
+                echo $f
+        fi
+}
+
+fact $n
+
+*********************************************OUTPUT********************************************
+
+$ ./factorial.sh
+EXAMPLE Factorial – 5! = 1 * 2 * 3 * 4 * 5
+enter no for factorial : 10
+3628800
+
+
+==============================================================================================
+6. Write a program to compute Factors of a number N using prime factorization method.
+
+Logic -> Traverse till i*i <= N instead of i <= N for efficiency.
+O/P -> Print the prime factors of number N.
+===========================================================================================
+
+
+***********************************output************************************************
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Repetition Practice Problems with while loop
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==============================================================================================
+1. Write a program that takes a command-line 
+argument n and prints a table of the powers of 2 that are less than or equal to 2^n till 256 is
+reached..
+=====================================================================================
+
+#!/bin/bash -x
+
+read -p "ENTER ANY NUMBER : " a
+
+n=1
+
+while [[ $n -le $a && $table -lt 256 ]]
+do
+	table=$((2**$n))
+	((n++))
+	echo $table
+done
+
+*******************************output***********************************
+$ ./table256.sh
+ENTER ANY NUMBER : 20
+2
+4
+8
+16
+32
+64
+128
+256
+================================================================
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Functions Practice Problems
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+====================================================================================
+2. Write a function to check if the two numbers 
+are Palindromes
+====================================================================================
+#!/bin/bash -x
+
+read -p "ENTER THE NUMBER : " n
+function palindrome
+{
+        number=$n
+        reverse=0
+        while [ $n -gt 0 ]
+        do
+                a=$(( $n % 10 ))
+                n=$(( $n / 10 ))
+                reverse=$(( reverse * 10 + $a ))
+        done
+        echo $reverse
+
+        if [ $number -eq $reverse ]
+        then
+                echo "number is palindrome"
+        else
+                echo "number is not palindrome"
+        fi
+
+}
+r= palindrome $n
+echo $r
+********************************output************************************************
+$ ./pallindrome.sh
++ read -p 'ENTER THE NUMBER : ' n
+ENTER THE NUMBER : 545
++ r=
++ palindrome 545
++ number=545
++ reverse=0
++ '[' 545 -gt 0 ']'
++ a=5
++ n=54
++ reverse=5
++ '[' 54 -gt 0 ']'
++ a=4
++ n=5
++ reverse=54
++ '[' 5 -gt 0 ']'
++ a=5
++ n=0
++ reverse=545
++ '[' 0 -gt 0 ']'
++ echo 545
+545
++ '[' 545 -eq 545 ']'
++ echo 'number is palindrome'
+number is palindrome
++ echo
+
+

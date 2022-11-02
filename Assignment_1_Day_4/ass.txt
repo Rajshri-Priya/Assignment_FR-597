@@ -1,0 +1,133 @@
+
+
+ASSIGNMENT QUESTION
+============================================================================
+1. use random function ((RANDOM)) to  get single digit.
+
+RANGE (0-32767)
+
+$ echo $((RANDOM))
+12404
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+BY INDEPENDENT FILE(RANGE 0-9)
+
+nano ass.sh
+
+#!/bin/bash -x
+echo $((RANDOM%10))
+
+OUTPUT
+./ass.sh
++ echo 8
+8
+=============================================================================
+2. USE RANDOM TO GET DICE NUMER BETWEEN 1 TO 6.
+
+$ nano dice.sh
+
+#!/bin/bash -x
+echo $(( ($RANDOM%6) + 1))
+
+**********************************WITHOUT DEBUGGING*******************************
+OUTPUT
+$ ./dice.sh
+3
+
+RJ EMPIRE@DESKTOP-CVSOOKH MINGW64 /e/TFP-FR-597/day4/assignment
+$ ./dice.sh
+2
+
+RJ EMPIRE@DESKTOP-CVSOOKH MINGW64 /e/TFP-FR-597/day4/assignment
+$ ./dice.sh
+1
+
+===============================================================================
+3. ADD TWO RANDOM DICE NUMBER AND PRINT THE RESULT
+===============================================================================
+ nano add-dice.sh
+
+#!/bin/bash -x
+
+x=$(( ($RANDOM%6) + 1));
+y=$(( ($RANDOM%6) + 1));
+z=$(( $x + $y ));
+echo $z
+
+OUTPUT
+*****************************WITH DEBUGGING********************************************
+$ ./add-dice.sh
++ x=6
++ y=6
++ z=12
++ echo 12
+12
+
+RJ EMPIRE@DESKTOP-CVSOOKH MINGW64 /e/TFP-FR-597/day4/assignment
+$ ./add-dice.sh
++ x=2
++ y=5
++ z=7
++ echo 7
+7
+
+
+ ************************* WITHOUT DEBUGGING ****************************************
+RJ EMPIRE@DESKTOP-CVSOOKH MINGW64 /e/TFP-FR-597/day4/assignment
+$ ./add-dice.sh
+6
+
+RJ EMPIRE@DESKTOP-CVSOOKH MINGW64 /e/TFP-FR-597/day4/assignment
+$ ./add-dice.sh
+5
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ANOTHER WAY
+
+nano add-dice1.sh
+
+#!/bin/bash -x
+echo $z= $(( $(( ($RANDOM%6)+ 1)) +  $(( ($RANDOM%6)+ 1)) ));
+
+OUTPUT
+
+$ ./add-dice1.sh
++ echo =9
+=9
+
+RJ EMPIRE@DESKTOP-CVSOOKH MINGW64 /e/TFP-FR-597/day4/assignment
+$ ./add-dice1.sh
++ echo =3
+=3
+========================================================================================
+4. WRITE A PROGRAM THAT READS 5 RANDOM 2 DIGIT VALUES ,THEN FIND THEIR SUM AND THE AVERAGE.
+===========================================================================================
+
+#!/bin/bash -x
+sum=0
+avg=0
+for i in {1..5}
+do
+        x=$(( ($RANDOM % 89) + 10 ))
+        echo $x
+        sum=$(( sum+x ))
+done
+avg=$(( $sum/5 ))
+echo " sum of 5 random 2 digit numbers :" $sum
+echo "avg of 5 random 2 digit numbers :" $avg
+
+
+OUTPUT
+
+$ ./2digit-ran.sh
+86
+85
+38
+73
+62
+ sum of 5 random 2 digit numbers : 344
+avg of 5 random 2 digit numbers : 68
+
+
+
+
